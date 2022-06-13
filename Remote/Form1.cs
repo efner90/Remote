@@ -20,11 +20,12 @@ namespace Remote
 
         
         /// <summary>
-        /// будет выбирать и читать эксель файл
+        /// Будет выбирать и читать эксель файл
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void button1_Click(object sender, EventArgs e)
+        /// <param name="sender">XLS файл</param>
+        /// <param name="e">Таблица</param>       
+
+        private void открытьФайлToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var ReadExcel = new ExcelFile();
             OpenFileDialog file = new OpenFileDialog();
@@ -51,8 +52,18 @@ namespace Remote
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void выходToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            this.Close();
+        }
+
+        private void сохранитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var SaveExcel = new ExcelFile();
+            SaveFileDialog file = new SaveFileDialog();
+            string fileExt = Path.GetExtension(file.FileName);
+            SaveExcel.SaveExcel(fileExt);
+            
 
         }
     }

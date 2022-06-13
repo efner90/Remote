@@ -19,9 +19,19 @@ namespace Remote
         /// <returns>DataTable</returns>
         public DataTable ReadExcel(string fileName)
         {
-            WorkBook workbook = WorkBook.Load(fileName);            
+            WorkBook workbook = WorkBook.Load(fileName);              
             WorkSheet sheet = workbook.DefaultWorkSheet;            
             return sheet.ToDataTable(true);
         }
+        public DataTable SaveExcel(string filename)
+        {
+            WorkBook workbook = WorkBook.Load(filename);            
+            WorkBook sheet = workbook.SaveAs($"{filename}.xls");
+            var newSheet = workbook.DefaultWorkSheet;
+            return newSheet.ToDataTable(true);
+        }
+
+
+
     }
 }
