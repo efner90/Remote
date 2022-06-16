@@ -23,12 +23,15 @@ namespace Remote
             WorkSheet sheet = workbook.DefaultWorkSheet;            
             return sheet.ToDataTable(true);
         }
-        public DataTable SaveExcel(string filename)
+        public void SaveExcel(string filename, DataTable dataTable)
         {
-            WorkBook workbook = WorkBook.Load(filename);            
-            WorkBook sheet = workbook.SaveAs($"{filename}.xls");
-            var newSheet = workbook.DefaultWorkSheet;
-            return newSheet.ToDataTable(true);
+            IronXL.Options.CreatingOptions creatingOptions = new IronXL.Options.CreatingOptions();
+            creatingOptions.DefaultFileFormat = ExcelFileFormat.XLS;
+            WorkBook workbook = WorkBook.Create(creatingOptions);  
+            workbook.LoadWorkSheet(dataTable);
+            WorkBook sheet = workbook.SaveAs(filename);
+            //var newSheet = workbook.DefaultWorkSheet;
+            //return newSheet.ToDataTable(true);
         }
 
 

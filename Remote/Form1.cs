@@ -61,8 +61,10 @@ namespace Remote
         {
             var SaveExcel = new ExcelFile();
             SaveFileDialog file = new SaveFileDialog();
+            file.ShowDialog();
             string fileExt = Path.GetExtension(file.FileName);
-            SaveExcel.SaveExcel(fileExt);
+
+            SaveExcel.SaveExcel(file.FileName, (DataTable)DataGridXLS.DataSource);
             
 
         }
